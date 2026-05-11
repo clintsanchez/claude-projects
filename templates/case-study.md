@@ -64,11 +64,13 @@ If `result` is vague ("they grew"), push back and ask for specifics before draft
 ### Hero
 - **Filename / Alt text:** `[slugified-hero-name]`
 - **Asset Type:** Image | Branded Graphic
+- **Render Path:** `claude-design` (composition) — UNLESS marked `[STOCK OR COMMISSIONED]`, in which case user supplies the file
 - **Detailed Prompt:** [2-4 sentences. For real client environment / product photography, flag `[STOCK OR COMMISSIONED]`.]
 
 ### Results Chart (high value — use the real numbers from the Results section)
 - **Placement:** Top of Results section.
 - **Asset Type:** Bar Chart | Line Chart | Before/After Comparison | Stat Callout
+- **Render Path:** `claude.ai-html` (single-element chart, mass-produced)
 - **Placeholder:** `[slugified-results]`
 - **Filename:** `[same-slug]`
 - **Detailed Prompt:** Include the actual numbers from the case study and the source. Client metrics are fine — cite as "Client metrics, [year]." Example: "Bar chart, before vs. after. Pipeline value Q1 vs. Q3: $1.2M → $2.4M (Client metrics, 2025). Title: 'Pipeline doubled in two quarters.' Two bars, with the delta labeled."
@@ -76,13 +78,15 @@ If `result` is vague ("they grew"), push back and ask for specifics before draft
 ### Pull-Quote Graphic (if there's a strong client quote)
 - **Placement:** Middle of Approach or Turning Point section.
 - **Asset Type:** Quote Card
+- **Render Path:** `claude.ai-html` (single small asset)
 - **Filename:** `[slugified-quote-keyword]`
 - **Detailed Prompt:** Quote text verbatim. Attribution: name + role + company. If a client headshot is approved for use, note `[INCLUDE HEADSHOT: name]`.
 
 ### Optional Supporting
 
-- **Process Diagram** if Approach has 3-5 clear steps. Same structured format.
-- **Comparison Diagram** if the story has a clean before/after framing. Same structured format.
+- **Process Diagram** if Approach has 3-5 clear steps — Render Path `claude-design` (composition).
+- **Comparison Diagram** if the story has a clean before/after framing — Render Path `claude-design` (composition).
+- **Full case study one-pager** (optional repurpose asset) — Render Path `claude-design`. Filename: `[slug]-onepager`. Use the entire case study text as the brief.
 
 For any chart/data: real data + citation REQUIRED. Never fabricate client numbers.
 

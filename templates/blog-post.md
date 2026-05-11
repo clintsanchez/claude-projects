@@ -54,6 +54,7 @@ After the post, produce a structured visual asset list. Target: **5-10 total ass
 
 ### Featured Image
 - **Filename / Alt text:** `[slugified-descriptive-name-no-stop-words]`
+- **Render Path:** `claude-design` (featured images are hero compositions by default)
 - **Detailed prompt:** [2-4 sentence cinematic or illustrative description. No brand references — colors, fonts, and logo come from the HTML brand template at render time.]
 
 ### Supporting Assets (4-9, in order of appearance)
@@ -62,11 +63,25 @@ For each, output:
 
 - **Placement:** Insert after the section about [specific anchor in the post, not "somewhere in the middle"].
 - **Asset Type:** Image | Bar Chart | Pie Chart | Line Chart | Infographic | Quote Card | Stat Callout | Comparison Diagram | Process Diagram
+- **Render Path:** `claude.ai-html` | `claude-design` (use the routing guide below)
 - **Placeholder:** `[slugified-bracketed-name]`
 - **Filename:** `[same-slug]`
 - **Detailed Prompt:**
   - For **Images**: 2-4 sentence cinematic / illustrative description.
   - For **Data / Charts**: REQUIRED — research and state actual relevant data with values and source citation. Example: "Bar chart showing voicemail completion rates by buyer intent. Data: cold callers complete voicemail 18% (Salesforce, 2024); inbound buyers 8% (HubSpot, 2023). Title: 'Most callers don't leave voicemail.' Y-axis: percentage. Two bars."
+
+### Render path routing
+
+Asset type determines the default render path (override only with a stated reason):
+
+| Asset type | Default Render Path |
+|---|---|
+| Bar Chart, Pie Chart, Line Chart | `claude.ai-html` |
+| Stat Callout, Quote Card | `claude.ai-html` |
+| Image (single subject, no overlay/composition) | `claude.ai-html` |
+| Image (hero composition with overlays / layered branding) | `claude-design` |
+| Infographic, Comparison Diagram, Process Diagram | `claude-design` |
+| Featured Image | `claude-design` |
 
 ### Rules
 

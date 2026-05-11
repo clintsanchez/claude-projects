@@ -58,24 +58,26 @@ Single markdown document, all sections labeled with H2s, ready to hand to a desi
 ### Hero
 - **Filename / Alt text:** `[slugified-hero-name]`
 - **Asset Type:** Image | Branded Graphic | Illustration
-- **Detailed Prompt:** [2-4 sentence cinematic/illustrative description. For photographic heros — aircraft on tarmac, client environment shots — flag as `[STOCK OR COMMISSIONED]` since these don't render well from the HTML brand template.]
+- **Render Path:** `claude-design` (heroes are compositions) — UNLESS marked `[STOCK OR COMMISSIONED]`, in which case neither render path applies and the user supplies the file
+- **Detailed Prompt:** [2-4 sentence cinematic/illustrative description. For photographic heros — aircraft on tarmac, client environment shots — flag as `[STOCK OR COMMISSIONED]` since these don't render from the HTML brand template OR Claude Design.]
 
 ### Section Visuals (3-5, one per "What you get" outcome)
 
 For each:
 - **Placement:** Inline with section about [outcome name].
 - **Asset Type:** Image | Icon | Infographic | Comparison Diagram | Stat Callout
+- **Render Path:** `claude.ai-html` for Icon / Stat Callout / single-subject Image; `claude-design` for Infographic / Comparison Diagram / composed Image
 - **Placeholder:** `[slugified-bracketed-name]` (matches inline marker)
 - **Filename:** `[same-slug]`
 - **Detailed Prompt:** as above. For data/charts: real data + citation REQUIRED.
 
 ### Proof Visuals
-- **Logo line:** list of client logo filenames (pull from `brand-templates/_master.html` logo registry if BlakSheep, or client's existing logo set).
-- **Testimonial avatars:** per testimonial, specify photo source — uploaded headshot, illustration, initials.
-- **Case study card thumbnails** (optional, per featured story): filename + asset type.
+- **Logo line:** list of client logo filenames (Render Path: N/A — these are existing assets, not generated).
+- **Testimonial avatars:** per testimonial — Render Path `claude.ai-html` for illustrations or initials; N/A for uploaded headshots.
+- **Case study card thumbnails** (optional, per featured story): Filename + Asset Type + Render Path.
 
 ### Final CTA Section (optional)
-- **Filename / Asset Type / Detailed Prompt** if a background image or graphic is needed.
+- **Filename / Asset Type / Render Path / Detailed Prompt** if a background image or graphic is needed.
 ```
 
 ### Rendering the visuals

@@ -57,12 +57,15 @@ Text-only post. Default unless there's a real reason for a visual.
 ### Option B: Single image
 - **Filename / Alt text:** `[slugified-descriptive-name]`
 - **Asset Type:** Image | Stat Callout | Quote Card
+- **Render Path:** `claude.ai-html` for Stat Callout / Quote Card / single-subject Image; `claude-design` if the image is a hero composition with overlays / layered branding
 - **Detailed Prompt:**
   - For Images: 2-3 sentence description.
   - For Data / Stat Callouts: REQUIRED — real data + source citation. Never fabricate.
 
 ### Option C: Carousel (3-10 slides)
 Use when the post has a list, framework, or step-by-step.
+
+**Render Path:** `claude-design` (carousels are always compositions — Claude Design handles the multi-slide flow natively).
 
 For each slide:
 - **Slide #** + **Title** (5-7 words)

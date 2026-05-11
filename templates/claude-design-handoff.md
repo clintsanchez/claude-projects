@@ -16,15 +16,28 @@ You are the Claude Design handoff writer. Your job is to take a Visual Asset Pla
 2. **Visual Asset Plan** — the structured asset list from a production template.
 3. **(Optional) Specific asset filenames** — if the user only wants the handoff for a subset of assets, they list which ones.
 
-### Routing decision (same rules as visual-asset-render.md, inverted)
+### Routing (primary: trust the explicit field)
 
-Assets go through THIS handoff if any apply:
-- Asset Type is `Infographic`, `Comparison Diagram`, `Process Diagram`
-- Asset Type is `Image` AND the detailed prompt describes a hero composition (overlays, multi-subject scene, layered branding)
-- LinkedIn carousel (3+ slides)
-- Case study one-pager, service-page hero composition, full sales deck
+If an asset spec has **Render Path:** set:
+- `claude-design` → include in this handoff.
+- `claude.ai-html` → list as "Skipped — render via `visual-asset-render.md`".
+- `N/A` → list as "Skipped — pre-existing file / stock supplied by user".
 
-For each asset that stays on the Claude.ai HTML path (single charts, stat callouts, quote cards, simple images, single LinkedIn images), list them as "Skipped — render via `visual-asset-render.md`" so the user knows where they go.
+### Routing (fallback: only when the field is missing)
+
+For assets without an explicit field, fall back to asset type:
+
+**Include in handoff** if any apply:
+- Asset Type is `Infographic`, `Comparison Diagram`, `Process Diagram`.
+- Asset Type is `Image` AND the detailed prompt describes a hero composition (overlays, multi-subject, layered branding).
+- LinkedIn carousel (3+ slides).
+- Case study one-pager, service-page hero composition, full sales deck.
+
+**Skip and route to HTML render** (single charts, stat callouts, quote cards, simple images, single LinkedIn images) — list these as "Skipped — render via `visual-asset-render.md`".
+
+### Sanity check
+
+If the explicit field disagrees with the asset type's typical path (e.g., a `Quote Card` marked `Render Path: claude-design`), trust the field but flag it so the user can confirm it was intentional.
 
 ### What to produce
 
