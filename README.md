@@ -91,7 +91,7 @@ This is the single hinge that makes the whole system multi-client without projec
 
 ## Visual asset workflow
 
-Every production template that needs visuals outputs a **Visual Asset Plan** at the end of its output: a structured spec for 1 featured image + 4-9 supporting assets (images, charts, infographics, quote cards, stat callouts). Per asset:
+Every production template that needs visuals outputs a **Visual Asset Plan**: a structured spec for the featured asset + 4-9 supporting assets. Per asset:
 
 - **Placement** — exact location in the piece (after section X)
 - **Asset Type** — image | bar chart | pie chart | line chart | infographic | quote card | stat callout | comparison diagram | process diagram
@@ -99,9 +99,29 @@ Every production template that needs visuals outputs a **Visual Asset Plan** at 
 - **Filename** — `slugified-name-no-stop-words` (doubles as alt text)
 - **Detailed Prompt** — cinematic/illustrative description for images; **real researched data with source citations** for charts/data viz
 
-You take that spec → render against the client's `brand-templates/[slug].html` → export each to webp → drop into the published piece. The render step itself can be done by Claude once `brand-templates/_master.html` exists in the repo — we'll wire that up via `templates/visual-asset-render.md` (next).
+### Hybrid render path
 
-**Why this format**: matches the asset spec process you already use elsewhere. Filenames-as-alt-text, structured placement, real data for charts, slugified placeholders for clean doc insertion.
+Two render tools, picked per-asset based on what the asset is for. The render templates auto-route based on asset type — you don't have to choose manually.
+
+| Render path | Best for | Native export | To webp |
+|---|---|---|---|
+| `claude.ai-html` | Small inline assets: single bar chart, stat callout, quote card, single LinkedIn image | HTML | Your existing HTML→webp exporter |
+| `claude-design` | Larger compositions: case study one-pagers, sales decks, LinkedIn carousels, service-page hero compositions, multi-element infographics | PNG / PDF / PPTX (Claude Design native) | Default: save as PNG → convert PNG→webp (any image converter). Adjust once you've run it. |
+
+Both paths use `brand-templates/[slug].html` as the design system:
+- `claude.ai-html` reads it as a Project knowledge file and uses its CSS / variants as the HTML base
+- `claude-design` reads it as an uploaded design file (Claude Design ingests design system files natively per Anthropic's docs)
+
+### Render templates
+
+- `templates/visual-asset-render.md` — runs the `claude.ai-html` path. Reads a Visual Asset Plan + brand template, outputs populated HTML files per asset. Routes the larger composition assets to the handoff template instead of rendering them.
+- `templates/claude-design-handoff.md` — runs the `claude-design` path. Outputs a structured prompt + spec you paste into a Claude Design session. Handoff is manual today; if Claude Design gets MCP / API exposure later, we can automate.
+
+### Pending input
+
+- `brand-templates/_master.html` — your house design system. The render templates assume this file exists in the repo. Drop it in when ready; both render paths immediately work.
+
+**Why this format**: matches the asset spec process you already use, plus a render-path field that auto-routes between the lighter Claude.ai HTML pipeline (great for high-volume small assets) and Claude Design (great for compositions). Filenames-as-alt-text, structured placement, real data required for charts.
 
 ## Refreshing the system
 
