@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Image: Trash Can Cleaning Website Strategy</title>
+    
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts: Poppins (Headings) & Open Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-green: #61CE70;
+            --brand-moss: #2C3B38;
+            --brand-charcoal: #1A1A1A;
+            --brand-slate: #94a3b8;
+            --brand-white: #FFFFFF;
+            
+            --font-head: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            
+            --container-width: 1000px;
+            --standard-radius: 15px;
+            --standard-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: #0f172a;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container updated to capture id */
+        #capture {
+            width: var(--container-width);
+            height: 500px;
+            background-color: var(--brand-charcoal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Tactical Blueprint Texture */
+        .grid-blueprint {
+            background-image: radial-gradient(rgba(97, 206, 112, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Background Image with Gradient Overlay */
+        .bg-photo {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(26,26,26,0.98) 25%, rgba(26,26,26,0.4) 100%), 
+                        url('https://bscmainwp.wpenginepowered.com/wp-content/uploads/2026/04/professional-trash-bin-cleaning-service-truck-and-technicians.webp');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(20%);
+            z-index: 0;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            padding: 50px;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+
+        .text-side {
+            width: 60%;
+        }
+
+        .mockup-side {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Badge Styles */
+        .badge-main {
+            background: var(--brand-green);
+            color: var(--brand-moss);
+            font-family: var(--font-head);
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+        }
+
+        .badge-float {
+            background: rgba(44, 59, 56, 0.9);
+            color: white;
+            border: 1px solid var(--brand-green);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            backdrop-filter: blur(5px);
+            z-index: 20;
+        }
+
+        .headline {
+            font-family: var(--font-head);
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .sub-headline {
+            color: var(--brand-slate);
+            font-style: italic;
+            font-size: 16px;
+            line-height: 1.6;
+            border-left: 4px solid var(--brand-green);
+            padding-left: 20px;
+            max-width: 80%;
+        }
+
+        /* Phone Mockup */
+        .phone-frame {
+            width: 240px;
+            height: 480px;
+            background: #fff;
+            border: 10px solid #222;
+            border-radius: 35px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+            overflow: hidden;
+            position: relative;
+            transform: rotate(5deg) translateY(40px);
+        }
+
+        .phone-screen {
+            height: 100%;
+            width: 100%;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-header {
+            padding: 20px 15px 10px 15px;
+            font-size: 9px;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .search-result {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .result-active {
+            background: #f0fdf4;
+            border-left: 4px solid var(--brand-green);
+        }
+
+        .result-title {
+            font-weight: 900;
+            font-size: 12px;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .result-meta {
+            font-size: 9px;
+            color: var(--brand-green);
+            font-weight: 800;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="capture">
+        <div class="grid-blueprint"></div>
+        <div class="bg-photo"></div>
+        
+        <div class="content-overlay">
+            <div class="text-side">
+                <div class="badge-main">
+                    <i class="fas fa-chart-line"></i> GROW YOUR CLEANING BUSINESS
+                </div>
+                
+                <h1 class="headline">
+                    WHAT A TRASH CAN <br>
+                    <span class="text-[#61CE70]">CLEANING WEBSITE</span> <br>
+                    NEEDS TO BOOK JOBS.
+                </h1>
+                
+                <p class="sub-headline">
+                    The tactical blueprint for high-converting home service websites that dominate local search and capture recurring revenue.
+                </p>
+            </div>
+
+            <div class="mockup-side">
+                <div class="badge-float" style="top: 0; right: 40px;">
+                    <i class="fas fa-rocket text-[#61CE70]"></i> SCALABLE SYSTEMS
+                </div>
+                
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="phone-header">
+                            Query: "Bin Cleaning Hammond"
+                        </div>
+                        <div class="search-result result-active">
+                            <div class="result-title">Can-Clean Pro Services</div>
+                            <div class="flex gap-1 text-[#f59e0b] text-[8px] mb-1">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="result-meta">
+                                <span>Market Authority</span> • <span>Verified</span>
+                            </div>
+                        </div>
+                        <div class="search-result">
+                            <div class="result-title">Standard Bin Co. #402</div>
+                            <div class="flex gap-1 text-[#cbd5e1] text-[8px] mb-1">
+                                <i class="fas fa-star text-[#f59e0b]"></i><i class="fas fa-star text-[#f59e0b]"></i><i class="fas fa-star text-[#f59e0b]"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="search-result">
+                            <div class="result-title">Local Guy With a Hose</div>
+                            <div class="flex gap-1 text-[#cbd5e1] text-[8px] mb-1">
+                                <i class="fas fa-star text-[#f59e0b]"></i><i class="fas fa-star text-[#f59e0b]"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#61CE70]/10 mt-auto">
+                            <div class="h-2 w-12 bg-[#61CE70] rounded mb-2"></div>
+                            <div class="h-2 w-20 bg-gray-300 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="badge-float" style="bottom: 60px; right: -20px;">
+                    <i class="fas fa-trophy text-[#61CE70]"></i> MARKET DOMINANCE
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

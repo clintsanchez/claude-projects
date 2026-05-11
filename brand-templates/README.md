@@ -1,45 +1,78 @@
 # Brand Templates
 
-One HTML brand template per client (plus a master reference). The visual asset workflow renders each Visual Asset Plan against the matching client template to produce branded HTML files, which then export to webp.
+One HTML brand template per client (plus a master reference, dark + light modes). The visual asset workflow renders each Visual Asset Plan against the matching client template to produce branded HTML files, which then export to webp.
 
 ## Files
 
 ```
-_master.html                  House design system. Reference template every client template inherits structure from.
-[client-slug].html            One file per client. Same slot structure as _master, different colors/fonts/logo.
+_master.html                                  House design system (dark mode). Primary reference.
+_master-light.html                            Light mode variant of the master.
+examples/                                     Reference assets (finished, not slot templates)
+  featured-image-trash-can-cleaning-website.html
+[client-slug].html                            One per client. Inherits master's variant structure, swaps colors/fonts/logo.
 ```
 
-## Asset variants every template must define
+## Variant inventory (as of 2026-05-11)
 
-Each brand template defines a set of **asset variants** matching the Visual Asset Plan's asset types:
+Variants confirmed present in `_master.html`:
 
-| Variant | Use case |
+| Variant ID | Pack | Asset Type | Notes |
+|---|---|---|---|
+| `deployment-hero` | Pack 01 | Featured Image / Hero | Full-width hero with badge + headline + subhead + 2 CTAs + logo seal. |
+| `bar-chart` | Pack 02 | Bar Chart | "Fluff vs Reality" comparison-flavored. 4 bars with labels/values. |
+| `portfolio-mockup` | Pack 03 | (custom) | 2-col: text side + device mockup. Useful for showcasing finished work. |
+| `quote-card` | Pack 04 | Quote Card | Testimonial-style with 5-star + quote + attribution. |
+| `process-diagram` | Pack 05 | Process Diagram | 4-phase grid (Consult / Design / Deploy / Dominate). |
+
+Additional finished example in `examples/featured-image-trash-can-cleaning-website.html` — an alternate `featured-image` style with phone-mockup + photo background overlay. Not a slot template, just a reference for an alternate hero layout.
+
+## Variants STILL MISSING (need scaffolding before render templates work end-to-end)
+
+- `pie-chart`
+- `line-chart`
+- `infographic` (multi-section explanatory)
+- `stat-callout` (single big number + supporting text)
+- `comparison-diagram` (true 2-column before/after layout — Pack 02 is close but charts-based)
+
+When you're ready, run `templates/brand-template-generator.md` in extend mode on `_master.html`, or hand-add the 5 missing variants in the same tactical style.
+
+## Brand specs embedded in `_master.html`
+
+| Element | Value |
 |---|---|
-| `featured-image` | Hero with title overlay (blog post, case study, service page) |
-| `bar-chart` | Categorical comparisons |
-| `pie-chart` | Composition / share |
-| `line-chart` | Trends over time |
-| `infographic` | Multi-step framework (3-7 steps) |
-| `quote-card` | Pull-quote with attribution |
-| `stat-callout` | Single big number + supporting text |
-| `comparison-diagram` | Before/after, 2-column |
-| `process-diagram` | Numbered steps (3-5) |
+| Brand Green | `#61CE70` |
+| Brand Moss | `#2C3B38` |
+| Brand Charcoal (dark) | `#1A1A1A` |
+| Brand Charcoal (light) | `#2F2F2F` |
+| Brand Slate (dark) | `#94A3B8` |
+| Brand Slate (light) | `#707E92` |
+| Heading font | Poppins 700/800/900, uppercase, tight letter-spacing |
+| Body font | Open Sans 400/700 |
+| Logo URL | `https://blaksheepcreative.com/wp-content/uploads/2023/01/blaksheep-creative-denham-springs-green-white-logo.svg` |
+| Container width | 781px (master) / 1000px (featured image example) |
+| Signature motifs | Tactical blueprint grid overlay; logo seal (moss circle, green border, bottom-right); brand badges (green pill or moss-on-green); italic subhead with green left border; all-caps headline with one accent word in green. |
 
-Each variant is parameterized — when an asset is rendered, the variant's text/data slots are filled in from the Visual Asset Plan's detailed prompt.
+These specs are reflected in `brand-bible.md` section 6 (Visual identity).
 
 ## Adding a new client template
 
-Use the Brand Template Generator template (`templates/brand-template-generator.md`):
+Use `templates/brand-template-generator.md`:
 1. Feed it the client's logo, brand colors, fonts, and sample marketing pieces.
 2. Save the output here as `[client-slug].html`.
 3. Commit.
 
+The generator inherits the variant slot structure from `_master.html`. Same variants, swapped brand values.
+
 ## When to refresh a template
 
-- Client rebrands → regenerate.
-- New asset variant added to `_master.html` → propagate (regenerate or hand-patch each client template).
+- Client rebrands → regenerate that client's template.
+- Master template gets a new variant → propagate to client templates (regenerate or hand-patch).
 - Quarterly: verify all client templates still match the client's current brand.
 
-## TODO: `_master.html`
+## Mode selection
 
-The master template is the next thing to land. Once it exists, the `templates/visual-asset-render.md` template can be wired up to read it and produce populated HTML per asset.
+Per-piece, decide dark vs. light:
+- Default to `_master.html` (dark) for tactical, high-contrast pieces (case studies, performance content, social-first).
+- Use `_master-light.html` for editorial-feeling content (blog hero images for SEO, longer-form authority pieces, service pages).
+
+The render templates currently default to dark unless the user specifies `mode: light` in the Visual Asset Plan inputs.
