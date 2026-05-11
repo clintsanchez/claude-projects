@@ -136,24 +136,24 @@ Drawing from existing template copy and client portfolio:
 
 ## 10. Master template variant inventory
 
-Confirmed variants in `brand-templates/_master.html` (and `_master-light.html`):
+All 10 variants present in `brand-templates/_master.html` (dark) and `_master-light.html` (light):
 
-| Variant | Where in master | Maps to asset type |
+| Variant | Pack | Maps to asset type |
 |---|---|---|
-| Deployment Hero | Pack 01 | `featured-image` (one approach) |
+| Deployment Hero | Pack 01 | `featured-image` |
 | Fluff vs Reality bar chart | Pack 02 | `bar-chart` |
-| Portfolio Mockup | Pack 03 | (new — `portfolio-mockup`, not in original 9) |
+| Portfolio Mockup | Pack 03 | `portfolio-mockup` (custom variant) |
 | Proof Card | Pack 04 | `quote-card` |
 | 4-Phase Workflow | Pack 05 | `process-diagram` |
+| Market Composition Pie | Pack 06 | `pie-chart` |
+| Growth Trajectory Line | Pack 07 | `line-chart` |
+| Anatomy Infographic | Pack 08 | `infographic` |
+| Stat Callout | Pack 09 | `stat-callout` |
+| Two-Column Comparison | Pack 10 | `comparison-diagram` |
 
-Additional finished example in `brand-templates/examples/featured-image-trash-can-cleaning-website.html` — an alternate `featured-image` style with phone mockup + photo background.
+Additional finished example in `brand-templates/examples/featured-image-trash-can-cleaning-website.html` — alternate `featured-image` style with phone-mockup + photo background.
 
-**Missing from the master** (need scaffolding):
-- `pie-chart`
-- `line-chart`
-- `infographic` (multi-section explanatory)
-- `stat-callout` (single big number callout)
-- `comparison-diagram` (true 2-column before/after — Pack 02 is close but uses chart bars)
+Variants 6-10 use `data-slot="..."` attributes for programmatic rendering. Variants 1-5 (originals from your upload) don't have slot markers yet; render templates identify replaceable text positionally for those. Retro-adding slots to 1-5 is a follow-up if rendering accuracy needs it.
 
 ## 11. Update log
 
