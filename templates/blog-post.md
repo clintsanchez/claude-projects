@@ -48,32 +48,41 @@ If any required input is missing, ask for it in one short message before draftin
 
 ---
 
-## Visual Brief
+## Visual Asset Plan
 
-**Hero image** (above title or after intro)
-- Subject: [what it depicts]
-- Style: photo | illustration | branded graphic
-- Dimensions: 1200x630 (open graph standard, also works for most blog CMSs)
-- Alt text: [10-15 words, includes target keyword if natural]
-- Notes: [color/mood, what to avoid]
+After the post, produce a structured visual asset list. Target: **5-10 total assets** — 1 featured image + 4-9 supporting visuals spaced logically through the piece. Every asset earns its place. No padding to hit the count.
 
-**In-body visuals** (only if the post genuinely needs them — don't pad)
-- For each: Subject / Style / Dimensions / Alt text / Where it goes in the post
+### Featured Image
+- **Filename / Alt text:** `[slugified-descriptive-name-no-stop-words]`
+- **Detailed prompt:** [2-4 sentence cinematic or illustrative description. No brand references — colors, fonts, and logo come from the HTML brand template at render time.]
 
-**Optional: Pull-quote graphic** for the strongest line in the piece
-- 1080x1080 square or 1200x675 landscape, branded
+### Supporting Assets (4-9, in order of appearance)
+
+For each, output:
+
+- **Placement:** Insert after the section about [specific anchor in the post, not "somewhere in the middle"].
+- **Asset Type:** Image | Bar Chart | Pie Chart | Line Chart | Infographic | Quote Card | Stat Callout | Comparison Diagram | Process Diagram
+- **Placeholder:** `[slugified-bracketed-name]`
+- **Filename:** `[same-slug]`
+- **Detailed Prompt:**
+  - For **Images**: 2-4 sentence cinematic / illustrative description.
+  - For **Data / Charts**: REQUIRED — research and state actual relevant data with values and source citation. Example: "Bar chart showing voicemail completion rates by buyer intent. Data: cold callers complete voicemail 18% (Salesforce, 2024); inbound buyers 8% (HubSpot, 2023). Title: 'Most callers don't leave voicemail.' Y-axis: percentage. Two bars."
+
+### Rules
+
+- If real data isn't findable for a chart, downgrade it to an Image with a representative caption — or cut it. Never fabricate statistics.
+- If a stat is needed but the source is unclear, label `[NEED SOURCE]` in the prompt.
+- Featured image filename doubles as alt text — descriptive and keyword-aware without keyword-stuffing.
+- Supporting placements anchor to specific sections by their actual H2/H3 text, not "between paragraph 4 and 5."
 
 ---
 **Alternative angle (one sentence, optional):** ...
-**Open questions for the writer:** [any flagged NEED EXAMPLE items or ambiguity in inputs]
+**Open questions for the writer:** [any flagged NEED EXAMPLE items, NEED SOURCE items, or ambiguity in inputs]
 ```
 
-### Generating the visuals
+### Rendering the visuals
 
-If the user asks to generate any of the visuals, use the Canva MCP tools (`generate-design`, `create-design-from-candidate`, `export-design`). Default flow:
-1. Ask if they want on-brand output (calls `list-brand-kits` if yes).
-2. Call `generate-design` with the Visual Brief subject + style + dimensions baked into the query.
-3. Show candidate options. On user pick, call `create-design-from-candidate` then `export-design` for a download URL.
+The Visual Asset Plan is fed to the visual-asset-render template (`templates/visual-asset-render.md`, coming soon), which reads `brand-templates/[slug].html`, picks the matching variant per asset, and outputs populated HTML files ready for webp export.
 
 ### Length discipline
 

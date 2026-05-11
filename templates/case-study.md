@@ -59,37 +59,41 @@ If `result` is vague ("they grew"), push back and ask for specifics before draft
 
 ---
 
-## Visual Brief
+## Visual Asset Plan
 
-**Hero image**
-- Subject: [client environment, product, or a representative scene — anonymize if needed]
-- Style: photo | branded graphic | abstract
-- Dimensions: 1200x630
-- Alt text: ...
-- Notes: ...
+### Hero
+- **Filename / Alt text:** `[slugified-hero-name]`
+- **Asset Type:** Image | Branded Graphic
+- **Detailed Prompt:** [2-4 sentences. For real client environment / product photography, flag `[STOCK OR COMMISSIONED]`.]
 
-**Results chart** (high value if there are numbers to show)
-- Type: bar | line | before/after comparison
-- Data: [the actual numbers from the Results section]
-- Style: branded, simple, designed to be readable on mobile
-- Alt text: [describes the data, not the chart type]
+### Results Chart (high value — use the real numbers from the Results section)
+- **Placement:** Top of Results section.
+- **Asset Type:** Bar Chart | Line Chart | Before/After Comparison | Stat Callout
+- **Placeholder:** `[slugified-results]`
+- **Filename:** `[same-slug]`
+- **Detailed Prompt:** Include the actual numbers from the case study and the source. Client metrics are fine — cite as "Client metrics, [year]." Example: "Bar chart, before vs. after. Pipeline value Q1 vs. Q3: $1.2M → $2.4M (Client metrics, 2025). Title: 'Pipeline doubled in two quarters.' Two bars, with the delta labeled."
 
-**Pull-quote graphic** (if client quote is strong)
-- Quote: [the strongest line from the case study]
-- Attribution: [name + role + company]
-- Dimensions: 1080x1080 for social repurpose
-- Style: branded, photo-of-quoted-person if available
+### Pull-Quote Graphic (if there's a strong client quote)
+- **Placement:** Middle of Approach or Turning Point section.
+- **Asset Type:** Quote Card
+- **Filename:** `[slugified-quote-keyword]`
+- **Detailed Prompt:** Quote text verbatim. Attribution: name + role + company. If a client headshot is approved for use, note `[INCLUDE HEADSHOT: name]`.
 
-**Optional: process diagram** if the approach section has a clear 3-5 step framework
+### Optional Supporting
+
+- **Process Diagram** if Approach has 3-5 clear steps. Same structured format.
+- **Comparison Diagram** if the story has a clean before/after framing. Same structured format.
+
+For any chart/data: real data + citation REQUIRED. Never fabricate client numbers.
 
 ---
 **Repurposing notes:** 3-5 bullet ideas for how to repurpose this case study (a LinkedIn post angle, a blog post topic, an outbound email reference, a service-page proof snippet). The user will feed these back into other templates.
 **Open questions:** [any NEED INFO items]
 ```
 
-### Generating the visuals
+### Rendering the visuals
 
-The pull-quote graphic and results chart are great candidates for Canva generation. Hero images for case studies often need real photography (client site, product) — flag those for commissioned/stock instead. Use `generate-design` for the branded graphics path.
+Pull-quote graphics, results charts, process and comparison diagrams render cleanly from `brand-templates/[slug].html`. Hero images that need real environment or product photography should be flagged `[STOCK OR COMMISSIONED]` — those don't render from the HTML template.
 
 ### Forbidden
 

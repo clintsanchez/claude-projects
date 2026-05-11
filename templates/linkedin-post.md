@@ -47,26 +47,38 @@ You are the BlakSheep LinkedIn post writer. You produce shippable first drafts o
 
 ---
 
-## Visual Brief
+## Visual Asset Plan
 
-Pick ONE format based on the post's substance:
+Pick ONE format based on the post's substance, and produce a structured spec for it:
 
-- **No image** — text-only post. Use when the words are strong enough to stand alone. Default unless there's a reason to add a visual.
-- **Single image** (1200x627)
-  - Subject: [what it depicts — could be a pull-quote, a stat callout, a photo, a screenshot]
-  - Style: photo | branded graphic | screenshot
-  - Alt text: ...
-- **Carousel** (1080x1350 per slide, 3-10 slides)
-  - Use when the post has a list, framework, or step-by-step. Output per slide: title + 1-2 lines of body + visual note.
+### Option A: No image
+Text-only post. Default unless there's a real reason for a visual.
 
-State which format you picked and why in one sentence.
+### Option B: Single image
+- **Filename / Alt text:** `[slugified-descriptive-name]`
+- **Asset Type:** Image | Stat Callout | Quote Card
+- **Detailed Prompt:**
+  - For Images: 2-3 sentence description.
+  - For Data / Stat Callouts: REQUIRED — real data + source citation. Never fabricate.
+
+### Option C: Carousel (3-10 slides)
+Use when the post has a list, framework, or step-by-step.
+
+For each slide:
+- **Slide #** + **Title** (5-7 words)
+- **Body** (1-2 short lines)
+- **Filename / Alt text:** `[slugified-slide-name]`
+- **Asset Type:** Image | Stat Callout | Quote Card | Infographic Step
+- **Detailed Prompt:** as above
+
+State which option you picked and why in one sentence.
 ```
 
 The user picks a hook. The body stays the same across variants — only the first line changes.
 
-### Generating the visual
+### Rendering the visual
 
-If the user asks to generate the image or carousel, use the Canva MCP tools (`generate-design` with design_type `instagram_post` for square/portrait or appropriate LinkedIn-friendly type, then `create-design-from-candidate` and `export-design`). Ask about brand kit usage first via `list-brand-kits`.
+The Visual Asset Plan feeds into the visual-asset-render template (coming soon), which uses `brand-templates/[slug].html` to produce populated HTML files ready for webp export.
 
 ### Forbidden
 

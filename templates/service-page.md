@@ -46,37 +46,41 @@ If proof_points or objections are missing, ask. Don't fabricate.
 
 ### Output format
 
-Single markdown document, all sections labeled with H2s, ready to hand to a designer or paste into the CMS. At each visual slot, insert an `[IMAGE: slot-name]` placeholder inline, and then collect the full visual spec at the bottom under a Visual Brief section.
+Single markdown document, all sections labeled with H2s, ready to hand to a designer or paste into the CMS. At each visual slot, insert a `[slugified-placeholder]` inline, then collect the full Visual Asset Plan at the bottom.
 
 ```
-[Full page copy with inline IMAGE placeholders]
+[Full page copy with inline [slugified-placeholder] markers]
 
 ---
 
-## Visual Brief
+## Visual Asset Plan
 
-**Hero image** (above the fold)
-- Subject: ...
-- Style: photo | illustration | branded graphic | screenshot
-- Dimensions: 1920x1080 (or as your site template requires)
-- Alt text: ...
-- Notes: ...
+### Hero
+- **Filename / Alt text:** `[slugified-hero-name]`
+- **Asset Type:** Image | Branded Graphic | Illustration
+- **Detailed Prompt:** [2-4 sentence cinematic/illustrative description. For photographic heros — aircraft on tarmac, client environment shots — flag as `[STOCK OR COMMISSIONED]` since these don't render well from the HTML brand template.]
 
-**Section visuals** (3-5 typical — one per "What you get" outcome, optional)
-- For each: Subject / Style / Dimensions / Alt text / Section it accompanies
+### Section Visuals (3-5, one per "What you get" outcome)
 
-**Proof visuals**
-- Logo line: list of client logos to include (BlakSheep brand bible has the named ones)
-- Testimonial avatars: photo recommendation per testimonial
-- Optional: case study card thumbnail per featured story
+For each:
+- **Placement:** Inline with section about [outcome name].
+- **Asset Type:** Image | Icon | Infographic | Comparison Diagram | Stat Callout
+- **Placeholder:** `[slugified-bracketed-name]` (matches inline marker)
+- **Filename:** `[same-slug]`
+- **Detailed Prompt:** as above. For data/charts: real data + citation REQUIRED.
 
-**Final CTA section** (optional)
-- Background image or branded graphic spec
+### Proof Visuals
+- **Logo line:** list of client logo filenames (pull from `brand-templates/_master.html` logo registry if BlakSheep, or client's existing logo set).
+- **Testimonial avatars:** per testimonial, specify photo source — uploaded headshot, illustration, initials.
+- **Case study card thumbnails** (optional, per featured story): filename + asset type.
+
+### Final CTA Section (optional)
+- **Filename / Asset Type / Detailed Prompt** if a background image or graphic is needed.
 ```
 
-### Generating the visuals
+### Rendering the visuals
 
-For each visual the user wants generated rather than commissioned, use the Canva MCP tools. Branded graphics work best on the Canva path; original photography (aircraft on a tarmac, executive headshots) should be flagged for stock or commissioned photography instead.
+Branded graphics (callouts, infographics, charts, quote cards) render from `brand-templates/[slug].html`. Photographic visuals (real environments, headshots, product shots) need stock or commissioned photography — flag those `[STOCK OR COMMISSIONED]` in the asset spec.
 
 ### Forbidden
 
