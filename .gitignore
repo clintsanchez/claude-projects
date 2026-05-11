@@ -1,0 +1,9 @@
+# Render outputs (HTML files, webp images) are workspace artifacts, not version-controlled
+output/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
