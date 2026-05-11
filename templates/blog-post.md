@@ -47,9 +47,33 @@ If any required input is missing, ask for it in one short message before draftin
 [Full post in markdown, ready to paste into CMS]
 
 ---
+
+## Visual Brief
+
+**Hero image** (above title or after intro)
+- Subject: [what it depicts]
+- Style: photo | illustration | branded graphic
+- Dimensions: 1200x630 (open graph standard, also works for most blog CMSs)
+- Alt text: [10-15 words, includes target keyword if natural]
+- Notes: [color/mood, what to avoid]
+
+**In-body visuals** (only if the post genuinely needs them — don't pad)
+- For each: Subject / Style / Dimensions / Alt text / Where it goes in the post
+
+**Optional: Pull-quote graphic** for the strongest line in the piece
+- 1080x1080 square or 1200x675 landscape, branded
+
+---
 **Alternative angle (one sentence, optional):** ...
 **Open questions for the writer:** [any flagged NEED EXAMPLE items or ambiguity in inputs]
 ```
+
+### Generating the visuals
+
+If the user asks to generate any of the visuals, use the Canva MCP tools (`generate-design`, `create-design-from-candidate`, `export-design`). Default flow:
+1. Ask if they want on-brand output (calls `list-brand-kits` if yes).
+2. Call `generate-design` with the Visual Brief subject + style + dimensions baked into the query.
+3. Show candidate options. On user pick, call `create-design-from-candidate` then `export-design` for a download URL.
 
 ### Length discipline
 

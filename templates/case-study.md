@@ -58,9 +58,38 @@ If `result` is vague ("they grew"), push back and ask for specifics before draft
 [Full case study in markdown, with H2 section breaks matching the structure above]
 
 ---
+
+## Visual Brief
+
+**Hero image**
+- Subject: [client environment, product, or a representative scene — anonymize if needed]
+- Style: photo | branded graphic | abstract
+- Dimensions: 1200x630
+- Alt text: ...
+- Notes: ...
+
+**Results chart** (high value if there are numbers to show)
+- Type: bar | line | before/after comparison
+- Data: [the actual numbers from the Results section]
+- Style: branded, simple, designed to be readable on mobile
+- Alt text: [describes the data, not the chart type]
+
+**Pull-quote graphic** (if client quote is strong)
+- Quote: [the strongest line from the case study]
+- Attribution: [name + role + company]
+- Dimensions: 1080x1080 for social repurpose
+- Style: branded, photo-of-quoted-person if available
+
+**Optional: process diagram** if the approach section has a clear 3-5 step framework
+
+---
 **Repurposing notes:** 3-5 bullet ideas for how to repurpose this case study (a LinkedIn post angle, a blog post topic, an outbound email reference, a service-page proof snippet). The user will feed these back into other templates.
 **Open questions:** [any NEED INFO items]
 ```
+
+### Generating the visuals
+
+The pull-quote graphic and results chart are great candidates for Canva generation. Hero images for case studies often need real photography (client site, product) — flag those for commissioned/stock instead. Use `generate-design` for the branded graphics path.
 
 ### Forbidden
 

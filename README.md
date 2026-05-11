@@ -47,6 +47,35 @@ Every production template accepts a `brand_voice` input:
 
 This is the single hinge that makes the system work for ~50/50 BlakSheep / client output.
 
+## Visual generation (Canva integration)
+
+Every production template (blog, LinkedIn, service page, case study) now outputs a **Visual Brief** at the bottom. The brief specifies every image slot the piece needs: subject, style, dimensions, alt text, and design notes.
+
+You can take that brief in two directions:
+
+### Option 1: Hand it off (no tools required)
+Paste the Visual Brief to a designer, into Canva manually, into Midjourney/DALL-E/Adobe Firefly, or just shoot it yourself. The brief is the spec; the production happens wherever you already work.
+
+### Option 2: Generate inline (Canva MCP tools)
+Within a Claude session that has the Canva MCP server connected, ask: **"Generate the [slot name] visual using Canva."** Claude will:
+1. Ask whether you want it on-brand (calls `list-brand-kits` and lets you pick a brand kit).
+2. Call `generate-design` with the brief details translated into a Canva query.
+3. Return design candidate options for you to pick from.
+4. On your pick, call `create-design-from-candidate` to make it editable in your Canva account, then `export-design` to give you a PNG/JPG download URL.
+
+**What works well on the Canva path:**
+- Branded social graphics (LinkedIn images, pull-quote cards)
+- Results charts (bar/line/before-after)
+- Simple infographics
+- Hero graphics for blog posts when illustrated, not photographic
+
+**What still needs other tools or a designer:**
+- Original photography (aircraft on a tarmac, executive headshots, client-site shots)
+- Complex multi-source compositions
+- Brand-defining hero imagery for the service pages
+
+The templates flag these distinctions in their Generating the visuals notes.
+
 ## Branch
 
 Active development: `claude/setup-marketing-assistant-nZVec`
